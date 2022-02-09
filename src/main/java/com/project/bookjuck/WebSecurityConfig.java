@@ -1,5 +1,7 @@
 package com.project.bookjuck;
 
+
+import com.project.bookjuck.user.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,9 +11,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity  //SpringSecurityFilterChain이 자동으로 포함
@@ -27,7 +36,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers( "/css/**", "/js/**", "/upload/images/**"
                             , "/book/list", "/book/detail", "/book/detail_item","/cart","/main","/cscenter",
                             "/user/join").permitAll()
-                .antMatchers("/user/mypage").hasAuthority("ROLE_ADMIN")
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
@@ -53,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery("SELECT uid as username, upw as password, 1 as enabled "
                         + " FROM t_user "
                         + " WHERE uid = ?")
-                .authoritiesByUsernameQuery("SELECT uid as username, auth as authority "
+                .authoritiesByUsernameQuery("SELECT uid, auth as authority "
                         + "FROM t_user "
                         + "WHERE uid = ?");
     }
@@ -62,4 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+
+
 }

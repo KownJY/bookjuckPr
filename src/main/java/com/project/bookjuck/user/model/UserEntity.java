@@ -3,6 +3,10 @@ package com.project.bookjuck.user.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+
+import java.util.Collection;
 
 @Getter
 @Setter
@@ -17,4 +21,6 @@ public class UserEntity {
     private String birth;
     private String ph;
     private int gender;
+
+
 }
