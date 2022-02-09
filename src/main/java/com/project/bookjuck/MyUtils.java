@@ -3,17 +3,23 @@ package com.project.bookjuck;
 import com.project.bookjuck.user.UserMapper;
 import com.project.bookjuck.user.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-@Component
-public class AuthenticationFacade {
+import javax.servlet.http.HttpSession;
 
-    @Autowired private UserMapper mapper;
+@Component("utils")
+public class MyUtils {
+    @Autowired
+    private HttpSession hs;
 
+    @Autowired
+    private UserMapper mapper;
 
+    public void setLoginUser(UserEntity entity){
+        hs.setAttribute("loginUser", entity);
+    }
 
     public UserEntity getLoginUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

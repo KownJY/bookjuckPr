@@ -12,7 +12,7 @@
 <th:block layout:fragment="content">
     <div class="w-100 flex justify_content_center">
         <div class="grid w-80">
-            <div class="m-t-20 m-b-20"><a href="">BEST ></a></div>
+            <div class="m-t-20 m-b-20"><a href="/book/list">BEST ></a></div>
 
             <div class="flex">
                 <div class="menuDiv">국내도서</div>
@@ -28,7 +28,8 @@
                             <div class="font_bold p_10"> 1 </div>
                             <div class="grid">
                                 <div_>
-                                    <img th:src="@{/upload/images/XL.jfif}" class="book_img_1013">
+                                    <a href="/book/detail"><img th:src="@{/upload/images/XL.jfif}" class="book_img_1013"></a>
+
                                 </div_>
                                 <div class="best-info">
                                     <strong class="best-info__name">아몬드</strong>
@@ -100,5 +101,4 @@
     <script src="/js/main/main.js"></script>
 
 </th:block>
-
 

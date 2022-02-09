@@ -1,8 +1,12 @@
+
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns="http://www.w3.org/1999/html">
+      xmlns="http://www.w3.org/1999/html"
+>
+
+
 
         <!-- ////////////헤더부분/////////// -->
         <th:block th:fragment="header">
@@ -20,7 +24,8 @@
                         <span sec:authorize="isAuthenticated()" class="flex">
                             <ul class="flex">
                                 <li><a href="/user/logout">로그아웃</a></li>
-                                <li><a href="/user/mypage">마이페이지</a></li>
+                                 <li><a href="/user/mypage">마이페이지</a></li>
+                                <li th:text="${@utils.getLoginUser().getNm()}">님</li>
                             </ul>
                         </span>
 

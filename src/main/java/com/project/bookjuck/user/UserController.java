@@ -1,8 +1,10 @@
 package com.project.bookjuck.user;
 
+import com.project.bookjuck.MyUtils;
 import com.project.bookjuck.user.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +16,9 @@ public class UserController {
 
     @Autowired
     private UserService service;
+
+    @Autowired
+    private MyUtils myUtils;
 
     @GetMapping("/login")
     public void login(@ModelAttribute("UserEntity") UserEntity entity){
@@ -35,6 +40,13 @@ public class UserController {
         return "user/joinDone";
     }
 
+    @GetMapping("/mypage")
+    public String mypage(Model model, UserEntity entity){
+        System.out.println("user : "+ myUtils.getLoginUser());
+        model.addAttribute("data", myUtils.getLoginUser());
+        return "/user/mypage";
+    }
+
     @GetMapping("/joinDone")
     public String joinDone(){ return "user/joinDone"; }
 
@@ -46,10 +58,7 @@ public class UserController {
     @GetMapping("/leaveDone")
     public String leaveDone(){ return "user/leaveDone"; }
 
-    @GetMapping("mypage")
-    public String mypage() {
-        return "user/mypage";
-    }
+
 
     @GetMapping("pcHistory")
     public String pcHistory() {
