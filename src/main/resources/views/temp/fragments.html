@@ -22,7 +22,7 @@
                         <span sec:authorize="isAuthenticated()" class="flex">
                             <ul class="flex">
                                 <li><a href="/user/logout" class="m-r-10">로그아웃</a></li>
-                                     <li th:text="${@utils.getLoginUser().getNm()}">님</li>
+                                     <li><a href="/user/mypage"><span th:text="${@utils.getLoginUser().getNm()}"></span>님의마이페이지</a></li>
                             </ul>
                         </span>
 
