@@ -2,7 +2,6 @@
 
     const joinFrmElem = document.querySelector('#join-frm');
 
-
     let idChkState = 2; //0: 아이디 사용 불가능, 1:아이디 사용가능, 2: 체크 안함
 
     const uidRegex = /^[a-z]+[a-z0-9]{4,9}$/g;
@@ -11,8 +10,6 @@
     const birthRegex = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
     const phRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;
     const emailRegex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-
-    const result1 = document.getElementById('#result1');
 
 
     const setIdChkMsg = (data) => {
@@ -34,19 +31,16 @@
 
     if (joinFrmElem) {
 
-
         joinFrmElem.addEventListener('submit', (e) => {
             const uid = joinFrmElem.uid.value;
             const upw = joinFrmElem.upw.value;
             const upwChk = joinFrmElem.querySelector('#upw-chk').value;
             const nm = joinFrmElem.nm.value;
-
             const ph = joinFrmElem.ph.value;
             const birth = joinFrmElem.birth.value;
             const email = joinFrmElem.email.value;
 
-            let em1 = joinFrmElem.email1.value;
-            let em2 = joinFrmElem.email2.value;
+
 
             console.log(uid);
             console.log(upw);
@@ -55,12 +49,6 @@
             console.log(ph);
             console.log(birth);
             console.log(email);
-
-            console.log(em1.value);
-            console.log(em2.value);
-            // console.log(`${em1}@${em2}`);
-
-
 
 
             if (!uidRegex.test(uid)) {
